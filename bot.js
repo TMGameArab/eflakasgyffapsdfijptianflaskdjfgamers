@@ -344,9 +344,13 @@ message.channel.sendMessage(`**${argresult}**: تم تغير الاستماع ا
 
 var prefix = ">";
 
-client.on('message', msg => {
-  if (msg.content === '>help') {
-    msg.author.send(`
+client.on("message", message => {
+ if (message.content === ">help") {
+  message.react("👍")
+  const embed = new Discord.RichEmbed() 
+      .setColor("#ffff00")
+      .setThumbnail(message.author.avatarURL)
+      .setDescription(` 
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ● 
 👑『اوامر ادارية』👑
 
@@ -365,16 +369,25 @@ client.on('message', msg => {
 👑>clear  『كـود يحذف الـروم سواء صوتي او كتابي』
 
 👑>bc  『خيارات البرودكاست』 
-● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ● 
-    
-    `);
-  }.catch(() => {
-            message.channel.send('الخاص مغلق ⚠️');
-})
+● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●  
+`)
+
+
+message.author.sendEmbed(embed)
+.catch(() => {
+  message.channel.send('🚫الخاص مغلق');
 });
-client.on('message', msg => {
-  if (msg.content === '>help') {
-    msg.author.send(`
+
+}
+});
+
+client.on("message", message => {
+ if (message.content === ">help") {
+  message.react("👍")
+  const embed = new Discord.RichEmbed() 
+      .setColor("#ffff00")
+      .setThumbnail(message.author.avatarURL)
+      .setDescription(` 
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ● 
                         
 >server 『معلومات عن السيرفر』                      
@@ -392,11 +405,15 @@ client.on('message', msg => {
 >embed 『خاصيه غرد لكن بغير طريقه』
 
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●  
-    
-    `);
-  }.catch(() => {
-            message.channel.send('الخاص مغلق ⚠️');
-})
+`)
+
+
+message.author.sendEmbed(embed)
+.catch(() => {
+  message.channel.send('🚫الخاص مغلق');
+});
+
+}
 });
 
 client.on('message', (message) => {
