@@ -686,7 +686,6 @@ welcomer.sendFile(canvas.toBuffer())
 })
 })
 
-
 client.on('message', msg => {
   if (msg.content === 'رابط') {
     msg.reply('الرابط فى الخاص');
