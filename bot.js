@@ -8,6 +8,8 @@ var fs = require("fs");
 var Canvas = require('canvas');
 var jimp = require('jimp');
 var file = require('file-system');
+const bot = new Discord.Client({disableEveryone: true});
+bot.commands = new Discord.Collection();
 
 const client = new Client({ disableEveryone: true });
 
