@@ -196,7 +196,7 @@ ${videos.map(video2 => `[${++index} ] \`${video2.title}\``).join('\n')}`)
 		const embedqu = new Discord.RichEmbed()
 	.setDescription(`**Songs Queue:**
 ${serverQueue.songs.map(song => `**${++index} -** ${song.title}`).join('\n')}
-**الان يتم تشغيل** ${serverQueue.songs[0].title}`)
+**🎶الان يتم تشغيل** ${serverQueue.songs[0].title}`)
 		return msg.channel.sendEmbed(embedqu);
     }else if (command === `q`) {
 		
@@ -205,7 +205,7 @@ ${serverQueue.songs.map(song => `**${++index} -** ${song.title}`).join('\n')}
 		const embedqu = new Discord.RichEmbed()
 	.setDescription(`**Songs Queue:**
 ${serverQueue.songs.map(song => `**${++index} -** ${song.title}`).join('\n')}
-**الان يتم تشغيل** ${serverQueue.songs[0].title}`)
+**🎶الان يتم تشغيل** ${serverQueue.songs[0].title}`)
 		return msg.channel.sendEmbed(embedqu);
 	} else if (command === `pause`) {
 		if (serverQueue && serverQueue.playing) {
@@ -287,7 +287,7 @@ function play(guild, song) {
 		.on('error', error => console.error(error));
 	dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 
-	serverQueue.textChannel.send(`بدء تشغيل: **${song.title}**`);
+	serverQueue.textChannel.send(`🎶بدء تشغيل: **${song.title}**`);
 }
 
 client.on('message', message => {
