@@ -761,7 +761,7 @@ client.on('voiceStateUpdate', (oldM, newM) => {
        ch.send(embed)
     }
   })
-});
+})
 client.on('guildMemberAdd', member => {
     if (!member || !member.id || !member.guild) return;
     const guild = member.guild;
