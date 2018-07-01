@@ -10,6 +10,7 @@ var jimp = require('jimp');
 var file = require('file-system');
 const bot = new Discord.Client({disableEveryone: true});
 bot.commands = new Discord.Collection();
+var prefix = ">";
 
 const client = new Client({ disableEveryone: true });
 
