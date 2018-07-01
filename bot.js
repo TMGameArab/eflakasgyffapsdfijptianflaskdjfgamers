@@ -361,9 +361,7 @@ client.on("message", message => {
 👑>ct  مـلاحظه: الاسم انت تختاره『لي انشاء روم كتابي』
 👑>cv  مـلاحظه: الاسم انت تختاره『لي انشاء روم صوتي』
 👑>clear  『كـود يحذف الـروم سواء صوتي او كتابي』
-👑>bc  『خيارات البرودكاست』 
-👑>mute  『ميوت للشخص منعه من الكتابه』 
-👑>unmute  『فك الميوت عن الشخص』 
+👑>bc  『خيارات البرودكاست』  
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●  
 `)
 
@@ -619,82 +617,6 @@ client.on('message', message => {
         .addField('الرتب:',`**[${roles}]**`)
         message.channel.sendEmbed(embed);
     }
-});
-
-client.on('message', message => {
-                                if(!message.channel.guild) return;
-                        if (message.content.startsWith('>ping')) {
-                            if(!message.channel.guild) return;
-                            var msg = `${Date.now() - message.createdTimestamp}`
-                            var api = `${Math.round(client.ping)}`
-                            if (message.author.bot) return;
-                        let embed = new Discord.RichEmbed()
-                        .setAuthor(message.author.username,message.author.avatarURL)
-                        .setColor('RANDOM')
-                        .addField('Time Taken:',msg + " ms :signal_strength: ")
-                        .addField('WebSocket:',api + " ms :signal_strength: ")
-         message.channel.send({embed:embed});
-                        }
-});
-
-  if (command === prefix + "mute") {
-        if (!message.member.hasPermission('MANAGE_ROLES')) return message.reply("**⚠ | `[MANAGE_ROLES]`لا يوجد لديك صلاحية**").catch(console.error);
-  let user = message.mentions.users.first();
-  let modlog = client.channels.find('name', 'log');
-  let muteRole = client.guilds.get(message.guild.id).roles.find('name', 'Muted');
-  if (!muteRole) return message.reply("**`'Muted'`لا توجد رتبة** \n Muted سوي رتبة ").catch(console.error);
-  if (message.mentions.users.size < 1) return message.reply('**.mute <منشن الشخص> **').catch(console.error);
-  
-  const embed = new Discord.RichEmbed()
-    .setColor(0x00AE86)
-    .setTimestamp()
-    .addField('الأستعمال:', 'اسكت')
-    .addField('تم ميوت:', `${user.username}#${user.discriminator} (${user.id})`)
-    .addField('بواسطة:', `${message.author.username}#${message.author.discriminator}`)
-   
-   if (!message.guild.member(client.user).hasPermission('MANAGE_ROLES_OR_PERMISSIONS')) return message.reply('** :cry: `Manage Roles` لا يوجد لدي برمشن**').catch(console.error);
- 
-  if (message.guild.member(user).roles.has(muteRole.id)) {
-return message.reply("**:mute: تم إعطاء العضو ميوت**").catch(console.error);
-} else {
-    message.guild.member(user).addRole(muteRole).then(() => {
-return message.reply("**:white_check_mark: تم إعطاء العضو ميوت كتابي**").catch(console.error);
-});
-  }
-};
-});
-
-   client.on("message", message => {
-  if (message.author.bot) return;
-  
-  let command = message.content.split(" ")[0];
-  
-  if (command === prefix + "unmute") {
-        if (!message.member.hasPermission('MANAGE_ROLES')) return message.reply("**⚠ | `[MANAGE_ROLES]`لا يوجد لديك صلاحية**").catch(console.error);
-  let user = message.mentions.users.first();
-  let modlog = client.channels.find('name', 'log');
-  let muteRole = client.guilds.get(message.guild.id).roles.find('name', 'Muted');
-  if (!muteRole) return message.reply("**⚠ | `[MUTE_ROLES]`لا يوجد لديك صلاحية**").catch(console.error);
-  if (message.mentions.users.size < 1) return message.reply('**.unmute <منشن الشخص>**').catch(console.error);
-  const embed = new Discord.RichEmbed()
-    .setColor(0x00AE86)
-    .setTimestamp()
-    .addField('الأستعمال:', 'اتكلم')
-    .addField('تم فك الميوت عن:', `${user.username}#${user.discriminator} (${user.id})`)
-    .addField('بواسطة:', `${message.author.username}#${message.author.discriminator}`)
-
-  if (!message.guild.member(client.user).hasPermission('MANAGE_ROLES_OR_PERMISSIONS')) return message.reply('** ⚠ | `[MANAGE_ROLES_OR_PERMISSIONS]`لا يوجد لديك صلاحية **').catch(console.error);
-
-  if (message.guild.member(user).removeRole(muteRole.id)) {
-return message.reply("**:speaker: تم فك الميوت عن الشخص **").catch(console.error);
-} else {
-    message.guild.member(user).removeRole(muteRole).then(() => {
-return message.reply("**:white_check_mark: تم فك الميوت عن الشخص **").catch(console.error);
-});
-  }
-
-};
-
 });
 
 client.on('guildMemberAdd', member => {
