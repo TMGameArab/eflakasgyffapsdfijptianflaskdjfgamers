@@ -932,54 +932,5 @@ client.on('message', msg => {
   msg.author.send('https://discord.gg/f58wmp4')
   }
 });
-	
-let al = JSON.parse(fs.readFileSync(`./antilinks.json`, `utf8`));
-var prefix = '>'
-
-
-client.on('message', message => {
-    var sender = message.author
-    if (!message.channel.guild) return;
-    if (message.author.bot) return null;
-
-    if (!al[message.guild.id]) al[message.guild.id] = {
-        onoff: 'Off'
-    }
-
-    if (message.content === prefix + 'guildinfo') {
-        let perms = message.member.hasPermission(`MANAGE_GUILD`)
-        if (!perms) return message.reply(`You don't have permissions: Manage Guild.`)
-        var embed = new Discord.RichEmbed()
-            .setTitle(`${message.guild.name}'s Config`)
-
-
-            .addField(`Antilinks : `, `Antilinks State : ${al[message.guild.id].onoff}`)
-
-            .setColor(`BLUE`)
-        message.channel.send({
-            embed
-        })
-    }
-    if (message.content === prefix + 'antilinks') {
-        let perms = message.member.hasPermission(`MANAGE_GUILD`)
-        if (!perms) return message.reply(`You don't have permissions, required permission : Manage Server.`)
-        let args = message.content.split(" ").slice(1)
-        if (!args.join(" ")) {
-            if (al[message.guild.id].onoff === 'Off') return [message.channel.send(`**The Antlinks event has been toggled to On!**`), al[message.guild.id].onoff = 'On']
-            if (al[message.guild.id].onoff === 'On') return [message.channel.send(`**The Antilinks event has been toggled to Off!**`), al[message.guild.id].onoff = 'Off'] //:D
-
-        }
-    }
-    if (message.content.includes('discord.gg','gg')) {
-        if (al[message.guild.id].onoff === 'Off') return
-        if (message.member.hasPermission('ADMINISTRATOR')) return;
-        message.delete()
-        return message.reply(`** Advertising isn't allowed here ! **`)
-    }
-   
-    fs.writeFile("./antilinks.json", JSON.stringify(al), (err) => {
-        if (err) console.error(err)
-    });
-});
 
 client.login(TOKEN);
