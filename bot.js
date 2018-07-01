@@ -754,7 +754,7 @@ client.on('voiceStateUpdate', (oldM, newM) => {
     if(d1 === true && d2 === false) {
        let embed = new Discord.RichEmbed()
        .setAuthor(`${newM.user.tag}`, newM.user.avatarURL)
-       .setDescription(`${newM} تم ازاله الميوت ل`)
+       .setDescription(`${newM} تم ازاله دفين ل`)
        .addField('بواسطة',`${user}`)
        .setTimestamp()
 
@@ -853,7 +853,7 @@ client.on("roleCreate", rc => {
   .setTimestamp(); 
   channel.sendEmbed(embed)
   }
-  });
+});
 
 client.on('guildMemberAdd', member => {
 const welcomer =  member.guild.channels.find('name', 'welcome');
