@@ -370,7 +370,7 @@ client.on('message', msg => {
     `);
   }.catch(() => {
             message.channel.send('الخاص مغلق ⚠️');
-});
+})
 });
 client.on('message', msg => {
   if (msg.content === '>help') {
@@ -396,7 +396,7 @@ client.on('message', msg => {
     `);
   }.catch(() => {
             message.channel.send('الخاص مغلق ⚠️');
-});
+})
 });
 
 client.on('message', (message) => {
