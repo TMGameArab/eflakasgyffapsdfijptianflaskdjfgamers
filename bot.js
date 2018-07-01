@@ -740,7 +740,7 @@ client.on('voiceStateUpdate', (oldM, newM) => {
     if(m1 === true && m2 === false) {
        let embed = new Discord.RichEmbed()
        .setAuthor(`${newM.user.tag}`, newM.user.avatarURL)
-       .setDescription(`${newM} تم ازاله ميوت ل`)
+       .setDescription(`${newM} تم ازاله الميوت من`)
        .addField('بواسطة',`${user}`)
        .setTimestamp()
 
@@ -758,7 +758,7 @@ client.on('voiceStateUpdate', (oldM, newM) => {
     if(d1 === true && d2 === false) {
        let embed = new Discord.RichEmbed()
        .setAuthor(`${newM.user.tag}`, newM.user.avatarURL)
-       .setDescription(`${newM} تم ازاله دفين ل`)
+       .setDescription(`${newM} تم ازاله الدفين ل`)
        .addField('بواسطة',`${user}`)
        .setTimestamp()
 
@@ -857,7 +857,6 @@ client.on("roleCreate", rc => {
   .setTimestamp(); 
   channel.sendEmbed(embed)
   }
-});
 });
 
 client.on('message', msg => {
