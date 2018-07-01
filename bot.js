@@ -345,6 +345,10 @@ message.channel.sendMessage(`**${argresult}**: تم تغير الاستماع ا
 
 });
 
+client.on('ready', () => {
+   client.user.setActivity('Egyptian Gamers', {type : 'watching'});
+}); 
+
 client.on("message", message => {
  if (message.content === ">helpadmin") {
   message.react("👍")
