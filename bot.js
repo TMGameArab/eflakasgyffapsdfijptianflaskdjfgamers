@@ -680,6 +680,34 @@ client.on('message', message => {
     }
 });
 
+client.on('roleCreate', role => {
+  client.setTimeout(() => {
+    role.guild.fetchAuditLogs({
+        limit: 1,
+        type: 30
+      })
+      .then(audit => {
+        let exec = audit.entries.map(a => a.executor.username)
+        try {
+
+          let log = role.guild.channels.find('name', 'log');
+          if (!log) return;
+          let embed = new Discord.RichEmbed()
+            .setTitle('➕ RoleCreated')
+            .addField('Role Name', role.name, true)
+            .addField('Role ID', role.id, true)
+            .addField('By', exec, true)
+            .setTimestamp()
+          log.send(embed).catch(e => {
+            console.log(e);
+          });
+        } catch (e) {
+          console.log(e);
+        }
+      })
+  }, 1000)
+})
+
 client.on('voiceStateUpdate', (oldM, newM) => {
   let m1 = oldM.serverMute;
   let m2 = newM.serverMute;
@@ -706,7 +734,7 @@ client.on('voiceStateUpdate', (oldM, newM) => {
     if(m1 === true && m2 === false) {
        let embed = new Discord.RichEmbed()
        .setAuthor(`${newM.user.tag}`, newM.user.avatarURL)
-       .setDescription(`${newM} تم ازاله الميوت ل`)
+       .setDescription(`${newM} تم ازاله ميوت ل`)
        .addField('بواسطة',`${user}`)
        .setTimestamp()
 
@@ -724,7 +752,7 @@ client.on('voiceStateUpdate', (oldM, newM) => {
     if(d1 === true && d2 === false) {
        let embed = new Discord.RichEmbed()
        .setAuthor(`${newM.user.tag}`, newM.user.avatarURL)
-       .setDescription(`${newM} تم ازاله الدفين ل`)
+       .setDescription(`${newM} تم ازاله الميوت ل`)
        .addField('بواسطة',`${user}`)
        .setTimestamp()
 
@@ -806,7 +834,7 @@ client.on("roleCreate", rc => {
   if(channel) {
   var embed = new Discord.RichEmbed()
   .setTitle(rc.guild.name)
-  .setDescription(`***تم اضافه رتبه : *** **${rc.name}** `)
+  .setDescription(`***Created Role Name : *** **${rc.name}** `)
   .setColor(`RANDOM`)
   .setTimestamp(); 
   channel.sendEmbed(embed)
@@ -818,13 +846,12 @@ client.on("roleCreate", rc => {
   if(channel) {
   var embed = new Discord.RichEmbed()
   .setTitle(rd.guild.name)
-  .setDescription(`***تم حذف رتبه : *** **${rd.name}** `)
+  .setDescription(`***Deleted Role Name : *** **${rd.name}** `)
   .setColor(`RANDOM`)
   .setTimestamp(); 
   channel.sendEmbed(embed)
   }
   });
-});
 
 client.on('guildMemberAdd', member => {
 const welcomer =  member.guild.channels.find('name', 'welcome');
