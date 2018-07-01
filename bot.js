@@ -685,6 +685,7 @@ welcomer.sendFile(canvas.toBuffer())
 
 })
 })
+});
  
 client.on('roleCreate', role => {
   client.setTimeout(() => {
